@@ -78,5 +78,91 @@ public class MySQL {
 
 
 
+    public List<String> getPrice(String car) throws SQLException {
+        List<String> list = new ArrayList<String>();
+        try {
+            Class.forName(driver).newInstance();
+
+            conn = DriverManager.getConnection(url, userName, password);
+            String query = "SELECT price from cars where Cars like '" +car+"%"+"%"+ "'";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String cat = rs.getString("price");
+
+                list.add(cat);
+
+
+                System.out.println(cat);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+
+        return list;
+
+    }
+
+
+    public List<String> getWeekPrice(String car) throws SQLException {
+        List<String> list = new ArrayList<String>();
+        try {
+            Class.forName(driver).newInstance();
+
+            conn = DriverManager.getConnection(url, userName, password);
+            String query = "SELECT perWeekPrice from cars where Cars like '" +car+"%"+"%"+ "'";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String cat = rs.getString("perweekprice");
+
+                list.add(cat);
+
+
+                System.out.println(cat);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+
+        return list;
+
+    }
+
+    public List<String> getWeekendPrice(String car) throws SQLException {
+        List<String> list = new ArrayList<String>();
+        try {
+            Class.forName(driver).newInstance();
+
+            conn = DriverManager.getConnection(url, userName, password);
+            String query = "SELECT perWeekendPrice from cars where Cars like '" +car+"%"+"%"+ "'";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String cat = rs.getString("perweekendprice");
+
+                list.add(cat);
+
+
+                System.out.println(cat);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+
+        return list;
+
+    }
+
+
 
 }

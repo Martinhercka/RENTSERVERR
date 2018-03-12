@@ -13,6 +13,7 @@ public class Order2 {
     @Path("/new")
     @Produces(MediaType.APPLICATION_JSON)
     public String insertInfo(Order order) {
+
         MySQL mysql = new MySQL();
         mysql.insertOrder(order);
 

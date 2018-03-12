@@ -7,6 +7,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
+
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import java.util.EnumSet;
@@ -32,6 +33,7 @@ public class rentcarApplication extends Application<rentcarConfiguration> {
                     final Environment environment) {
         environment.jersey().register(new Car());
         environment.jersey().register(new Order2());
+
         final FilterRegistration.Dynamic cors =
                 environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 // Configure CORS parameters
@@ -41,6 +43,9 @@ public class rentcarApplication extends Application<rentcarConfiguration> {
 
         // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-    }
 
+        cors.setInitParameter(CrossOriginFilter.CHAIN_PREFLIGHT_PARAM, Boolean.FALSE.toString());
+
+
+    }
 }

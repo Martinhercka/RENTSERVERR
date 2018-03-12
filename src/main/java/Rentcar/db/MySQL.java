@@ -24,6 +24,7 @@ public class MySQL {
             String query = "SELECT cars from cars where category like '" + category + "'"+"AND cars.cars not in (select orders.car from orders)";
 
             PreparedStatement ps = conn.prepareStatement(query);
+            
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

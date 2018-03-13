@@ -1,6 +1,7 @@
 package Rentcar;
 
 import Rentcar.resources.Car;
+import Rentcar.resources.Login;
 import Rentcar.resources.Order2;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -33,6 +34,7 @@ public class rentcarApplication extends Application<rentcarConfiguration> {
                     final Environment environment) {
         environment.jersey().register(new Car());
         environment.jersey().register(new Order2());
+        environment.jersey().register(new Login());
 
         final FilterRegistration.Dynamic cors =
                 environment.servlets().addFilter("CORS", CrossOriginFilter.class);

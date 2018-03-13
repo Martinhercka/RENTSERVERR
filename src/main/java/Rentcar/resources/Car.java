@@ -126,6 +126,33 @@ public class Car
     }
 
 
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAll(@PathParam("cars")String cars) throws SQLException
+    {
+        System.out.println(cars);
+        List <String> list = new MySQL().getAll(cars);
+
+
+        boolean b = false;
+
+        String result = "getTable({\"cars\":[";
+        for (String temp : list) {
+            if (b == true) {
+                result += ',';
+            } else
+                b = true;
+            result += "\"" + temp + "\"";
+
+        }
+        result += "]})";
+        return result;
+
+
+    }
+
+
 
 
 

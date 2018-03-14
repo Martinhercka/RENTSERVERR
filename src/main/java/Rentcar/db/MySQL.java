@@ -52,7 +52,7 @@ public class MySQL {
             Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, userName, password);
 
-            String query = "INSERT INTO orders(fname,lname,email,PickPlace,DeliveryPlace,IDCN,contactNum,Car,PickDate,PickTime,DelivDate,DelivTime,Notes) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO orders(fname,lname,email,PickPlace,DeliveryPlace,IDCN,contactNum,Car,PickDate,PickTime,DelivDate,DelivTime,Notes,TotalPrice) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ps.setString(1, order.firstname);
@@ -68,6 +68,7 @@ public class MySQL {
             ps.setString(11, order.deliverdate);
             ps.setString(12, order.delivertime);
             ps.setString(13, order.notes);
+            ps.setString(14, order.totalprice);
 
             ps.executeUpdate();
 
@@ -206,7 +207,7 @@ public class MySQL {
 
             list.add("<table>");
             list.add("<tr><th>id</th><th>Pick-up date</th><th>Pick-up time</th><th>Delivery date</th><th>Delivery time</th><th>Pick-up place</th><th>Delivery place</th>"+
-                    "<th>First name</th><th>Last name</th><th>E-mail</th><th>Contact number</th><th>Id card number</th><th>Car</th><th>Notes</th>");
+                    "<th>First name</th><th>Last name</th><th>E-mail</th><th>Contact number</th><th>Id card number</th><th>Car</th><th>Notes</th><th>Total Price</th><th>OrderDate</th>");
 
             while (rs.next()) {
                 String id = rs.getString(1);
@@ -223,6 +224,8 @@ public class MySQL {
                 String idcn = rs.getString(12);
                 String car = rs.getString(13);
                 String notes = rs.getString(14);
+                String totalPrice = rs.getString(15);
+                String orderdate = rs.getString(16);
                 for(int i=0;i<id.length();i++) {
 
                     list.add("<tr>");
@@ -254,6 +257,10 @@ public class MySQL {
                     list.add("<td>"+car+"</td>");
                     list.add("   ");
                     list.add("<td>"+notes+"</td>");
+                    list.add("   ");
+                    list.add("<td>"+totalPrice+"</td>");
+                    list.add("   ");
+                    list.add("<td>"+orderdate+"</td>");
                     list.add("   ");
                     list.add("</tr>");
 

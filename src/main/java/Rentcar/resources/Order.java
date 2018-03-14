@@ -37,7 +37,8 @@ public class Order
     public String deliverdate;
     @JsonProperty("delivertime")
     public String delivertime;
-
+    @JsonProperty("totalprice")
+    public String totalprice;
 
 
 

@@ -204,6 +204,10 @@ public class MySQL {
 
             ResultSet rs = ps.executeQuery();
 
+            list.add("<table>");
+            list.add("<tr><th>id</th><th>Pick-up date</th><th>Pick-up time</th><th>Delivery date</th><th>Delivery time</th><th>Pick-up place</th><th>Delivery place</th>"+
+                    "<th>First name</th><th>Last name</th><th>E-mail</th><th>Contact number</th><th>Id card number</th><th>Car</th><th>Notes</th>");
+
             while (rs.next()) {
                 String id = rs.getString(1);
                 String pdate = rs.getString(2);
@@ -219,7 +223,6 @@ public class MySQL {
                 String idcn = rs.getString(12);
                 String car = rs.getString(13);
                 String notes = rs.getString(14);
-                list.add("<table>");
                 for(int i=0;i<id.length();i++) {
 
                     list.add("<tr>");
@@ -256,11 +259,12 @@ public class MySQL {
 
 
                 }
-                list.add("</table>");
+
             }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            return list;
+            list.add("</table>");
+        }catch(Exception e){
+            e.printStackTrace();
         }
+        return list;
     }
+}
